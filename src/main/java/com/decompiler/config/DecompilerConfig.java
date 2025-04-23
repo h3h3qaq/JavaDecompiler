@@ -4,14 +4,12 @@ public class DecompilerConfig {
     private final String inputPath;
     private final String outputPath;
     private final int threadCount;
-    private final boolean preserveStructure;
     private final boolean deleteClassFiles;
 
     private DecompilerConfig(Builder builder) {
         this.inputPath = builder.inputPath;
         this.outputPath = builder.outputPath;
         this.threadCount = builder.threadCount;
-        this.preserveStructure = builder.preserveStructure;
         this.deleteClassFiles = builder.deleteClassFiles;
     }
 
@@ -27,10 +25,6 @@ public class DecompilerConfig {
         return threadCount;
     }
 
-    public boolean isPreserveStructure() {
-        return preserveStructure;
-    }
-
     public boolean isDeleteClassFiles() {
         return deleteClassFiles;
     }
@@ -39,7 +33,6 @@ public class DecompilerConfig {
         private String inputPath;
         private String outputPath;
         private int threadCount = Runtime.getRuntime().availableProcessors();
-        private boolean preserveStructure = true;
         private boolean deleteClassFiles = false; // 默认不删除class文件
 
         public Builder inputPath(String inputPath) {
@@ -55,11 +48,6 @@ public class DecompilerConfig {
         public Builder threadCount(int threadCount) {
             this.threadCount = threadCount <= 0 ?
                     Runtime.getRuntime().availableProcessors() : threadCount;
-            return this;
-        }
-
-        public Builder preserveStructure(boolean preserveStructure) {
-            this.preserveStructure = preserveStructure;
             return this;
         }
 

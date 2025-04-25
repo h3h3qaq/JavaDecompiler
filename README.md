@@ -16,7 +16,6 @@
                 .inputPath("/xxxx/code")
                 .outputPath("/xxxx/output")
                 .threadCount(8)
-                .preserveStructure(true)
                 .deleteClassFiles(true)
                 .build();
         OptionsBuilder optionsBuilder = new OptionsBuilder();

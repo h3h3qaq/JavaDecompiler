@@ -73,4 +73,29 @@ public class TaskManager {
 
         return results;
     }
+    public <T> void executeParallel(List<Callable<T>> tasks) {
+        if (tasks.isEmpty()) {
+            return;
+        }
+
+        try {
+            List<Future<T>> futures = new ArrayList<>();
+            for (Callable<T> task : tasks) {
+                futures.add(executorService.submit(task));
+            }
+
+            // 等待所有任务完成
+            for (Future<T> future : futures) {
+                try {
+                    future.get();
+                } catch (ExecutionException | InterruptedException e) {
+                    logger.error("任务执行失败", e);
+                }
+            }
+
+            logger.info("完成了 {} 个并行任务", tasks.size());
+        } catch (Exception e) {
+            logger.error("并行任务执行过程中发生错误", e);
+        }
+    }
 }

@@ -72,7 +72,7 @@ public class Decompiler {
 
         // 如果是目录
         if (inputFile.isDirectory()) {
-            return FileUtil.processDirectory(inputFile, config.getOutputPath());
+            return FileUtil.processDirectory(inputFile, config.getOutputPath(), taskManager);
         }
         // 如果是 JAR
         else if (JarUtils.isJarFile(inputFile)) {

@@ -80,9 +80,7 @@ public class Decompiler {
         }
         // 如果是单个 class 文件
         else if (inputFile.getName().toLowerCase().endsWith(".class")) {
-            List<DecompileJob> jobs = new ArrayList<>();
-            jobs.add(new DecompileJob(inputFile, config.getOutputPath(), null));
-            return jobs;
+            return FileUtil.processClassFile(inputFile, config.getOutputPath());
         } else {
             throw new IllegalArgumentException("输入必须是.class文件、.jar文件或目录");
         }
